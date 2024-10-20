@@ -2,6 +2,9 @@
 
 Jump directly into your ROS2 packages with ease!
 
+[v] Jumps to package that are in the sourced workspace
+[x] Does not jump to package that are in the opt
+
 ## Usage
 
 

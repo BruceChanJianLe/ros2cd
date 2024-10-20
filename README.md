@@ -1,8 +1,8 @@
 # ros2cd
 
-✅ Jumps to package that are in the sourced workspace
+✅ Jump to packages that are in the sourced workspace
 
-❌ Does not jump to package that are in the opt
+❌ Does not jump to packages that are in the opt
 
 https://github.com/user-attachments/assets/a8f61e53-c03e-4b92-b512-149eaf5e7bf1
 
@@ -21,3 +21,7 @@ curl -s https://raw.githubusercontent.com/BruceChanJianLe/ros2cd/refs/heads/mast
 echo "source $HOME/.bash_aliases" >> $HOME/.zshrc
 source $HOME/.zshrc
 ```
+
+## Reference
+
+Read more about it [here](https://brucechanjianle.github.io/posts/programming-the-ros2cd-tool).

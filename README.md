@@ -24,4 +24,4 @@ source $HOME/.zshrc
 
 ## Reference
 
-Read more about it [here](https://brucechanjianle.github.io/posts/programming-the-ros2cd-tool).
+Read more about it [here](https://brucechanjianle.github.io/posts/programming-the-ros2cd-tool)!

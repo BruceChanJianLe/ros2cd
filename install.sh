@@ -15,8 +15,8 @@ mkdir $HOME/.local/bin -p
 touch $HOME/.bash_aliases
 
 # Download appropriate scripts
-curl -o $HOME/.local/bin https://raw.githubusercontent.com/BruceChanJianLe/ros2cd/refs/heads/master/get-ros2-pkg-path-local
-curl -o $HOME/.local/bin https://raw.githubusercontent.com/BruceChanJianLe/ros2cd/refs/heads/master/list-ros2-pkg-path-local
+curl -o $HOME/.local/bin/get-ros2-pkg-path-local https://raw.githubusercontent.com/BruceChanJianLe/ros2cd/refs/heads/master/get-ros2-pkg-path-local
+curl -o $HOME/.local/bin/list-ros2-pkg-path-local https://raw.githubusercontent.com/BruceChanJianLe/ros2cd/refs/heads/master/list-ros2-pkg-path-local
 
 chmod +x $HOME/.local/bin/get-ros2-pkg-path-local
 chmod +x $HOME/.local/bin/list-ros2-pkg-path-local

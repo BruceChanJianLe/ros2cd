@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+# This script jump to selected ros2 package path local
+# Does not consider opt/ros
+
+YELLOW='\033[0;33m'
+RESET='\033[0m'
+
+if [ -z $AMENT_PREFIX_PATH ]; then
+  echo -e "${YELLOW}PLEASE SOURCE A WORKSPACE BEFORE USING LOCAL ROS2CD!${RESET}"
+  return 0
+fi
+
+selected=$(list-ros2-pkg-path-local)
+
+if [ ! -z $selected ]; then
+  cd $selected
+fi

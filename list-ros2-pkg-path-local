@@ -1,0 +1,55 @@
+#!/usr/bin/env zsh
+# This script list the local ros2 path local
+# Does not consider opt/ros
+
+if [ ! -z $AMENT_PREFIX_PATH ]; then
+  workspaces=("${(s/:/)AMENT_PREFIX_PATH}")
+  trimmed_workspaces=()
+  for ws in "${workspaces[@]}"
+  do
+    trimmed_element=$(echo "$ws" | awk -F'/install/' '{print $1}')
+    if [ ! -z "$trimmed_element" ]; then
+      trimmed_workspaces+=("$trimmed_element")
+    fi
+  done
+else
+  exit 0
+fi
+
+# Use `sort` and `uniq` to filter out unique elements and store them in a temporary file
+unique_elements=$(printf "%s\n" "${trimmed_workspaces[@]}" | sort | uniq)
+
+# Convert the unique elements back into an array
+unique_workspaces=()
+while IFS= read -r line; do
+    unique_workspaces+=("$line")
+done <<< "$unique_elements"
+
+# Declare an associative array
+typeset -A package_map
+
+for item in "${unique_workspaces[@]}"; do
+  # Capture the output of find into an array
+  dirs=("${(@f)$(find "$item/src" -name 'package.xml' -exec dirname {} \;)}")
+
+  # Append captured directories to the filter_dirs array
+  filter_dirs+=("${dirs[@]}")
+done
+
+# Ensure unique entries in filter_dirs
+filter_dirs=(${(u)filter_dirs})
+
+for dir in "${filter_dirs[@]}"; do
+    # Get the basename of the directory
+    key=$(basename "$dir")
+    # Store the directory path in the associative array with basename as key
+    package_map[$key]="$dir"
+done
+
+selected=$(printf "%s\n" "${filter_dirs[@]}" | xargs -I{} basename {} | fzf)
+
+if [ ! -z $selected ]; then
+  echo "${package_map[$selected]}" 
+fi
+
+exit 0
